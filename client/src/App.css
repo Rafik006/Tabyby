@@ -1,8 +1,83 @@
-.sign-up{
-  width: 70%;
-  height: 800px;
-  text-align: center;
-  background-color: aliceblue;
-  border-radius: 10px;
-  margin: 0 auto;
+body{
+  background-color: rgb(238, 254, 249);
+  
 }
+.login-container{
+  width: 70%;
+  margin: 200px auto;
+  display: flex;
+}
+.login{
+  width: 785px;
+  text-align: center;
+  
+}
+.login-container img {
+  border-radius: 10px;
+}
+.login-container h2{
+  margin-top: 20px;
+  
+}
+.login-container form input {
+  font-size: 18px;
+  margin-top: 30px;
+}
+.side-bar{
+  padding: 20px;
+  background:#005555;
+  color: white;
+  width: 300px;
+  height: 800px;
+}
+.side-bar h1 {
+
+  margin-bottom:100px;
+}
+.side-bar-menu li{
+  font-size: 40px;
+  margin-bottom: 30px;
+  color: rgba(255, 255, 255, 0.727);
+  list-style: none;
+  text-decoration: none;
+  font-size: 30px;
+  padding: 0 10px;
+  cursor: pointer;
+
+
+}
+.side-bar-menu .clicked{
+  color: white;
+    background-color: #013737;
+    padding: 5px;
+    border-radius: 5px;
+}
+.main {
+  display: flex;
+}
+
+
+.home-container{
+  width: 90%;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 2px gray;
+   
+    margin-left: 30px;
+    text-align: center;
+    /* height: 10vh; */
+    
+   
+}
+.header {
+  font-size: 30px;
+  margin-left: 60px;
+  margin-top: 20px;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 5px;
+  box-shadow: 0 0 2px gray;
+  padding:10px;
+}
+

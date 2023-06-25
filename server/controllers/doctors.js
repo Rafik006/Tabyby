@@ -13,7 +13,7 @@ module.exports={
         const {firstName,lastName,email,specialte,number,location,password}=req.body
         bcrypt.hash(password,10).then(hash=>{
             Doctors.create({firstName,lastName,email,specialte,number,location,password:hash})
-            .then(()=>res.json("Doctor registered"))
+            .then((result)=>res.json(result))
             .catch(err=>res.status(400).send(err))
         })
         
@@ -36,7 +36,7 @@ module.exports={
                 });
           
                 
-                res.json("logged in ")
+                res.json(user)
             }
             
         })

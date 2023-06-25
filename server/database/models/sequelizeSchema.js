@@ -3,7 +3,7 @@ const sequelize = require("../config");
 
 // Define doctors model
 const Doctors = sequelize.define('doctors', {
-  // columns definition
+
   doctorsId: {
     type: DataTypes.INTEGER,
     allowNull: false,
@@ -23,18 +23,6 @@ const Doctors = sequelize.define('doctors', {
     allowNull: false,
     unique:true
   },
-  specialte: {
-    type: DataTypes.STRING(45),
-    allowNull: false
-  },
-  number: {
-    type: DataTypes.INTEGER,
-    allowNull: false
-  },
-  location: {
-    type: DataTypes.STRING(45),
-    allowNull: false
-  },
   password: {
     type: DataTypes.STRING(255),
     allowNull: false
@@ -46,7 +34,7 @@ const Doctors = sequelize.define('doctors', {
 
 // Define clients model
 const Clients = sequelize.define('clients', {
-  // columns definition
+  
   clientsId: {
     type: DataTypes.INTEGER,
     allowNull: false,
@@ -92,3 +80,4 @@ Doctors.hasMany(Clients, {
 });
 module.exports = sequelize;
 module.exports=Doctors
+

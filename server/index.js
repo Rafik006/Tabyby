@@ -11,7 +11,7 @@ const app=express()
 app.use(cors())
 app.use(express.json())
 app.use(cookieParser())
-const PORT=3001
+const PORT=3003
 
 
 app.use("/thedoctor",doctorRoutes)
