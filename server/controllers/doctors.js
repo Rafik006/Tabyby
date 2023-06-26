@@ -1,5 +1,5 @@
 const sequelize=require("sequelize")
-const Doctors=require("../database/models/sequelizeSchema")
+const {Doctors}=require("../database/models/sequelizeSchema")
 const bcrypt=require("bcrypt")
 
 const {createTokens}=require("../utils/JWT")
@@ -10,9 +10,9 @@ module.exports={
     },
     Register:function(req,res){
         
-        const {firstName,lastName,email,specialte,number,location,password}=req.body
+        const {firstName,lastName,email,password}=req.body
         bcrypt.hash(password,10).then(hash=>{
-            Doctors.create({firstName,lastName,email,specialte,number,location,password:hash})
+            Doctors.create({firstName,lastName,email,password:hash})
             .then((result)=>res.json(result))
             .catch(err=>res.status(400).send(err))
         })

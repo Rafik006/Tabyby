@@ -78,6 +78,11 @@ Doctors.hasMany(Clients, {
   onDelete: 'CASCADE',
   onUpdate: 'CASCADE'
 });
-module.exports = sequelize;
-module.exports=Doctors
+// module.exports=Clients
+// module.exports=Doctors
+// module.exports = sequelize;
+
+module.exports={
+  Clients,Doctors,sequelize
+}
 

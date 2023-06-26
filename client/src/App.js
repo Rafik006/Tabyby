@@ -1,6 +1,6 @@
 
 import React,{useState} from 'react';
-import {createBrowserRouter,createRoutesFromElements,Link,Route} from "react-router-dom"
+
 import SignUp from "./components/authentication/SignUp.jsx"
 import Login from "./components/authentication/Login.jsx"
 import DoctorsDashboard from './components/DoctorsDashboard.jsx';
@@ -11,17 +11,11 @@ import axios from 'axios';
 function App() {
 
   const [loggedIn, setLoggedIn] = useState(false);
-  const [userData, setUserData] = useState(null);
+  const [doctorData, setDoctorData] = useState(null);
+  const [doctorClients,setClients]=useState([])
   const [view,setView]=useState("login")
 
 
-// const router=createBrowserRouter(
-//   createRoutesFromElements(
-//     <Route path='/' element={<Root/>} >
-
-//     </Route>
-//   )
-// )
   const handleView=(options)=>{
     setView(options)
   }
@@ -29,7 +23,7 @@ function App() {
     const {firstName,lastName,email,password}=obj
     console.log(firstName,lastName,email,password)
     axios
-    .post('http://localhost:3003/thedoctor/register', {
+    .post('http://localhost:3004/thedoctor/register', {
       "firstName":firstName,
       "lastName":lastName,
       "email":email,
@@ -50,22 +44,30 @@ function App() {
 
     // Send a POST request to login endpoint
     axios
-      .post('http://localhost:3003/thedoctor/login', {
+      .post('http://localhost:3004/thedoctor/login', {
         email,
         password,
       })
       .then((response) => {
         console.log(response.data);
         setLoggedIn(true);
-        setUserData(response.data);
+        setDoctorData(response.data);
+        
+        getDoctorClients(response.data.doctorsId)
       })
       .catch((error) => {
         console.error(error);
       });
   };
-console.log("user ",userData)
+  const getDoctorClients=(id)=>{
+    axios.get(`http://localhost:3004/thedoctor/getAllClients/${id}`)
+    .then((res)=>{
+
+      setClients(res.data)
+    }).catch(err=>console.log(err))
+  }
 if(loggedIn){
-  return <DoctorsDashboard userData={userData}  />
+  return <DoctorsDashboard doctorClients={doctorClients} doctorData={doctorData}  />
 }
 if(view==="signup"){
   return <SignUp handleSignUp={handleSignUp} handleView={handleView} />

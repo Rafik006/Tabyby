@@ -3,7 +3,7 @@ const sequelize=require("./database/config")
 const cookieParser=require("cookie-parser")
 const cors=require("cors")
 
-const db=require("./database/models/sequelizeSchema")
+// const {sequelize}=require("./database/models/sequelizeSchema")
 
 const doctorRoutes=require("./routes/doctors")
 
@@ -11,11 +11,11 @@ const app=express()
 app.use(cors())
 app.use(express.json())
 app.use(cookieParser())
-const PORT=3003
+const PORT=3004
 
 
 app.use("/thedoctor",doctorRoutes)
-db.sync().then(()=>{
+sequelize.sync().then(()=>{
     console.log("database connected ")
     
 }).catch((err)=>console.log(err))
