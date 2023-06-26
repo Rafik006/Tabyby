@@ -59,6 +59,13 @@ function App() {
         console.error(error);
       });
   };
+  const addClients=(obj,id)=>{
+    console.log(obj)
+    
+    axios.post(`http://localhost:3004/thedoctor/addClients/${id}`,obj)
+    .then(()=>getDoctorClients(id))
+    .catch(err=>console.log(err))
+  }
   const getDoctorClients=(id)=>{
     axios.get(`http://localhost:3004/thedoctor/getAllClients/${id}`)
     .then((res)=>{
@@ -67,7 +74,7 @@ function App() {
     }).catch(err=>console.log(err))
   }
 if(loggedIn){
-  return <DoctorsDashboard doctorClients={doctorClients} doctorData={doctorData}  />
+  return <DoctorsDashboard addClients={addClients} doctorClients={doctorClients} doctorData={doctorData}  />
 }
 if(view==="signup"){
   return <SignUp handleSignUp={handleSignUp} handleView={handleView} />

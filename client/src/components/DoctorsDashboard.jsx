@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import Appointements from './Appointements.jsx'
 import Home from './Home.jsx'
+import AppointmentClients from "./AppointementClients.jsx"
 
 const DoctorsDashboard = (props) => {
   const [view,setView]=useState("home")
+  const [Appointements,setAppointments]=useState([])
 
   // console.log(props)
   const handleView=(option)=>{
@@ -35,9 +37,10 @@ const DoctorsDashboard = (props) => {
           </ul>
       </div>
       {view==="home"?<div className='home-container'>
-            <Home doctorClients={props.doctorClients} doctorData={props.doctorData}/>
+            <Home addClients={props.addClients} doctorClients={props.doctorClients} doctorData={props.doctorData}/>
       </div>:   <div>
-            <Appointements/>
+            {/* <Appointements/> */}
+            <AppointmentClients/>
       </div>
    }
        

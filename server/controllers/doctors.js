@@ -5,9 +5,7 @@ const bcrypt=require("bcrypt")
 const {createTokens}=require("../utils/JWT")
 
 module.exports={
-    getAllDoctors:function(req,res){
-        Doctors.findAll({}).then(result=>res.json(result)).catch(err=>res.status(500).send(err))
-    },
+
     Register:function(req,res){
         
         const {firstName,lastName,email,password}=req.body
@@ -41,9 +39,7 @@ module.exports={
             
         })
         
-    },
-    profile:(req,res)=>{
-        res.json("profile")
-    }   
+    }
+  
     
 }

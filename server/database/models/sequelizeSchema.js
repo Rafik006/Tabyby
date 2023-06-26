@@ -1,7 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require("../config");
 
-// Define doctors model
+
 const Doctors = sequelize.define('doctors', {
 
   doctorsId: {
@@ -32,7 +32,6 @@ const Doctors = sequelize.define('doctors', {
   timestamps: false
 });
 
-// Define clients model
 const Clients = sequelize.define('clients', {
   
   clientsId: {
@@ -66,7 +65,6 @@ const Clients = sequelize.define('clients', {
   timestamps: false
 });
 
-// Define associations
 Clients.belongsTo(Doctors, {
   foreignKey: 'doctors_doctorsId',
   onDelete: 'CASCADE',
@@ -78,11 +76,47 @@ Doctors.hasMany(Clients, {
   onDelete: 'CASCADE',
   onUpdate: 'CASCADE'
 });
-// module.exports=Clients
-// module.exports=Doctors
-// module.exports = sequelize;
+const Appointment = sequelize.define('Appointment', {
+  id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    autoIncrement: true,
+    primaryKey: true
+  },
+  patientName: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  appointmentDate: {
+    type: DataTypes.DATEONLY,
+    allowNull: false
+  },
+  appointmentTime: {
+    type: DataTypes.TIME,
+    allowNull: false
+  },
+  reason: {
+    type: DataTypes.TEXT,
+    allowNull: false
+  }
+}, {
+  tableName: 'appointments',
+  timestamps: false
+});
+Appointment.belongsTo(Doctors, {
+  foreignKey: 'doctorsId',
+  onDelete: 'CASCADE',
+  onUpdate: 'CASCADE'
+});
+
+Doctors.hasMany(Appointment, {
+  foreignKey: 'doctorsId',
+  onDelete: 'CASCADE',
+  onUpdate: 'CASCADE'
+});
+
 
 module.exports={
-  Clients,Doctors,sequelize
+  Clients,Doctors,sequelize,Appointment
 }
 
